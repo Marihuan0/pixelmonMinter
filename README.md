@@ -1,2 +1,4 @@
 # pixelmonMinter
-A simple autmatic pixelmon script that forages for u :)
+A script that automatically forages and prevents server kicks.
+
+Tutorial:
