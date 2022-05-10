@@ -1,4 +1,4 @@
-﻿#SingleInstance, Force
+#SingleInstance, Force
  
 GDIP_Startup()
  
@@ -8,19 +8,13 @@ Gui,1:Color,333333
  
  
 Always := New Flat_Round_Switch_Type_1(x := 0 , y := 0 , w := 0 , Text := "AlwaysOnTop" ,Font:="Arial",FontSize:= "12 Bold" , FontColor:="FFFFFF" ,Window:="1",Background_Color:="333333",State:=1,Label:="AlwaysOnTop")
-
+Minter := New Flat_Round_Switch_Type_1(x := 50 , y += 17 , w := 140 , Text := "Minter" ,Font:="Arial",FontSize:= "14 Bold" , FontColor:="FFFFFF" ,Window:="1",Background_Color:="333333",State:=0)
  
-Sound_Options:=[]
-
-Minter := New Flat_Round_Switch_Type_1(x := 25 , y += 20 , w := 140 , Text := "Minter" ,Font:="Arial",FontSize:= "14 Bold" , FontColor:="FFFFFF" ,Window:="1",Background_Color:="333333",State:=0)
+Gui,1:Font,cWhite s8 Bold,Arial
+Gui,1:Add,Button,x179 y17 w150 h20 gTest,Confirm Minter
+Gui,1:Add,Text, x3 y50 w150 h20, Press DEL to Exit
  
-Gui,1:Font,cWhite s10 Bold,Arial
- 
-Gui,1:Add,Button,x179 y20 w150 h20 gTest,Confirm Minter
-
- 
-Gui,1:Show,w375 h66,‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎‏‏‎ ‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎Simple Minter :D
- 
+Gui,1:Show,w375 h66,‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎‏‏‎ ‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎Simple Minter
  
 return
 GuiClose:
@@ -81,13 +75,9 @@ Test:
     return
     if(Minter.state=0)
     looping := false
-
     return
 
- 
- 
- 
- 
+
  
 class Flat_Round_Switch_Type_1  {
     __New(x,y,w:=19,Text:="Text",Font:="Arial",FontSize:= "10 Bold" , FontColor:="FFFFFF" ,Window:="1",Background_Color:="36373A",State:=0,Label:=""){
@@ -217,18 +207,11 @@ class Flat_Round_Switch_Type_1  {
         SetImage( This.Hwnd , This.On_Bitmap )
     }
 }
- 
- 
- 
- 
- 
 ;######################################################################################################################################
 ;#####################################################                          #######################################################
 ;#####################################################        Gdip LITE         #######################################################
 ;#####################################################                          #######################################################
 ;######################################################################################################################################
-; Gdip standard library v1.45 by tic (Tariq Porter) 07/09/11
-; Modifed by Rseding91 using fincs 64 bit compatible Gdip library 5/1/2013
 BitBlt(ddc, dx, dy, dw, dh, sdc, sx, sy, Raster=""){
     Ptr := A_PtrSize ? "UPtr" : "UInt"
     return DllCall("gdi32\BitBlt", Ptr, dDC, "int", dx, "int", dy, "int", dw, "int", dh, Ptr, sDC, "int", sx, "int", sy, "uint", Raster ? Raster : 0x00CC0020)
@@ -384,7 +367,7 @@ Gdip_TextToGraphics(pGraphics, Text, Options, Font="Arial", Width="", Height="",
     Loop, Parse, Alignments, |
     {
         if RegExMatch(Options, "\b" A_loopField)
-            Align |= A_Index//2.1      ; 0|0|1|1|2|2
+            Align |= A_Index//2.1
     }
     xpos := (xpos1 != "") ? xpos2 ? IWidth*(xpos1/100) : xpos1 : 0
     ypos := (ypos1 != "") ? ypos2 ? IHeight*(ypos1/100) : ypos1 : 0
@@ -651,15 +634,6 @@ Gdip_FillPolygon(pGraphics, pBrush, Points, FillMode=0){
     }
     return DllCall("gdiplus\GdipFillPolygon", Ptr, pGraphics, Ptr, pBrush, Ptr, &PointF, "int", Points0, "int", FillMode)
 }
-;#####################################################################################
-; Default = 0
-; LowQuality = 1
-; HighQuality = 2
-; Bilinear = 3
-; Bicubic = 4
-; NearestNeighbor = 5
-; HighQualityBilinear = 6
-; HighQualityBicubic = 7
 Gdip_SetInterpolationMode(pGraphics, InterpolationMode)
 {
    return DllCall("gdiplus\GdipSetInterpolationMode", A_PtrSize ? "UPtr" : "UInt", pGraphics, "int", InterpolationMode)
