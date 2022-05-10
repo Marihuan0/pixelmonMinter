@@ -1,4 +1,5 @@
 # pixelmonMinter
 A script that automatically forages and prevents server kicks.
+-
+![ezgif-4-37c8cdc99a](https://user-images.githubusercontent.com/61330374/167608526-a5bbf64f-0efe-465b-b58d-25f936734307.gif)
 
-![2022-05-10 12-24-47](https://user-images.githubusercontent.com/61330374/167608028-b2b1633d-c48e-4092-ab4d-0f3df020d11e.gif)
